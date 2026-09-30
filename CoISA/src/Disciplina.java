@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Disciplina {
     private String nomeDisciplina;
     private int horasEstudo;
@@ -14,16 +16,14 @@ public class Disciplina {
     }
     public void cadastraNota(int nota, double valorNota){
         this.valorNota = valorNota;
-        this.nota[nota] = (double) this.valorNota;
+        this.notaFinal += valorNota;
+        this.nota[nota - 1] = (double) this.valorNota;
     }
     public boolean aprovado(){
-        for(int i = 0; i < 4; i ++){
-            this.notaFinal += this.nota[i];
-        }
         if(this.notaFinal / 4 >= 7){return true;}
         else{return false;}
     }
     public String toString(){
-        return this.nomeDisciplina + this.horasEstudo + (this.notaFinal / 4) + this.nota;
+        return this.nomeDisciplina + " " + this.horasEstudo  + " " + (this.notaFinal / 4) + " " + Arrays.toString(this.nota);
     }
 }
