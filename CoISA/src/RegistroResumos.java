@@ -15,26 +15,26 @@ public class RegistroResumos {
     }
     public void adiciona(String tema, String conteudo){
         this.resumo = tema + ": " + conteudo;
-        this.resumosGuardados[j] = resumo;
+        this.resumosGuardados[j] = this.resumo;
         this.guardaTema[j] = tema;
 
         if(j < tamanho){j++;} else{j = 0;}
     }
     public String[] pegaResumos(){
-        return resumosGuardados;
+        return this.resumosGuardados;
     }
     public String imprimeResumos(){
         for(int i = 0; i < j; i++){
-            if(i == 0){this.saidaTemas = guardaTema[i];}else{this.saidaTemas += " | " + guardaTema[i];}
+            if(i == 0){this.saidaTemas = this.guardaTema[i];}else{this.saidaTemas += " | " + this.guardaTema[i];}
         }
-        return "- " + j + " resumo(s) casdatrado(s) \n" + "- " + saidaTemas;
+        return "- " + j + " resumo(s) casdatrado(s) \n" + "- " + this.saidaTemas;
     }
     public int conta(){
         return j;
     }
     public boolean temResumo(String tema){
         for(int i = 0; i < j; i++){
-            if(tema.equals(guardaTema[i])){return true;}
+            if(tema.equals(this.guardaTema[i])){return true;}
         }
         return false;
     }

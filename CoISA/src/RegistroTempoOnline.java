@@ -15,7 +15,7 @@ public class RegistroTempoOnline {
         this.tempoOnline += tempoOnline;
     }
     public boolean atingiuMetaTempoOnline(){
-        if (tempoOnline >= tempoOnlineEsperado){
+        if (this.tempoOnline >= this.tempoOnlineEsperado){
             return true;
         }else {
             return false;
