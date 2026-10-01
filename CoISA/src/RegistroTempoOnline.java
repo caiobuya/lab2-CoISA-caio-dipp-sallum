@@ -15,11 +15,8 @@ public class RegistroTempoOnline {
         this.tempoOnline += tempoOnline;
     }
     public boolean atingiuMetaTempoOnline(){
-        if (this.tempoOnline >= this.tempoOnlineEsperado){
-            return true;
-        }else {
-            return false;
-        }
+        if (this.tempoOnline >= this.tempoOnlineEsperado){return true;}
+        else{return false;}
     }
     public String toString(){
         return this.nomeDisciplina + " " + this.tempoOnline + "/" + this.tempoOnlineEsperado;

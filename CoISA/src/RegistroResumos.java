@@ -1,40 +1,40 @@
 public class RegistroResumos {
-    private String tema;
-    private String conteudo;
-    private String[] resumosGuardados;
-    private int tamanho;
-    private int j;
-    private String resumo;
-    private String[] guardaTema;
+
+    private Resumo[] resumos;
+    private int posicao;
     private String saidaTemas;
 
     public RegistroResumos(int numeroDeResumos){
-        this.tamanho = numeroDeResumos;
-        this.resumosGuardados = new String[tamanho];
-        this.guardaTema = new String[tamanho];
+        this.resumos = new Resumo[numeroDeResumos];
+        this.posicao = 0;
     }
     public void adiciona(String tema, String conteudo){
-        this.resumo = tema + ": " + conteudo;
-        this.resumosGuardados[j] = this.resumo;
-        this.guardaTema[j] = tema;
+        this.resumos[posicao % this.resumos.length] = new Resumo(tema, conteudo);
 
-        if(j < tamanho){j++;} else{j = 0;}
+        posicao++;
     }
     public String[] pegaResumos(){
-        return this.resumosGuardados;
+        String[] tempResumos = new String[conta()];
+        for (int i = 0; i < conta(); i++){
+            tempResumos[i] = this.resumos[i].getTema() + ": " + this.resumos[i].getConteudo();
+        }
+        return tempResumos;
     }
     public String imprimeResumos(){
-        for(int i = 0; i < j; i++){
-            if(i == 0){this.saidaTemas = this.guardaTema[i];}else{this.saidaTemas += " | " + this.guardaTema[i];}
+        for(int i = 0; i < posicao; i++){
+            if(i == 0){this.saidaTemas = this.resumos[i].getTema();}
+            else{this.saidaTemas += " | " + this.resumos[i].getTema();}
         }
-        return "- " + j + " resumo(s) casdatrado(s) \n" + "- " + this.saidaTemas;
+        return "- " + posicao + " resumo(s) casdatrado(s) \n" + "- " + this.saidaTemas;
     }
     public int conta(){
-        return j;
+        if(posicao >= this.resumos.length){return this.resumos.length;}
+        else{return posicao;}
+
     }
     public boolean temResumo(String tema){
-        for(int i = 0; i < j; i++){
-            if(tema.equals(this.guardaTema[i])){return true;}
+        for(int i = 0; i < posicao; i++){
+            if(tema.equals(this.resumos[i].getTema())){return true;}
         }
         return false;
     }
