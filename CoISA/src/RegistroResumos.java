@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class RegistroResumos {
 
     private Resumo[] resumos;
@@ -22,10 +24,12 @@ public class RegistroResumos {
     }
     public String imprimeResumos(){
         for(int i = 0; i < posicao; i++){
+
             if(i == 0){this.saidaTemas = this.resumos[i].getTema();}
+
             else{this.saidaTemas += " | " + this.resumos[i].getTema();}
         }
-        return "- " + posicao + " resumo(s) casdatrado(s) \n" + "- " + this.saidaTemas;
+        return "- " + posicao + " resumo(s) cadastrado(s) \n" + "- " + this.saidaTemas;
     }
     public int conta(){
         if(posicao >= this.resumos.length){return this.resumos.length;}
@@ -38,5 +42,23 @@ public class RegistroResumos {
         }
         return false;
     }
+    public String[] busca(String chaveDeBusca){
+        int iTemas = 0;
+        String[] tempTemas = new String[conta()];
 
+        for(int i = 0; i < conta(); i++){
+        String[] palavrasConteudo = this.resumos[i].getConteudo().split(" ");
+
+            for(String palavra: palavrasConteudo){
+                if (palavra.toLowerCase().equals(chaveDeBusca.toLowerCase())){
+                    tempTemas[iTemas] = this.resumos[i].getTema();
+                    iTemas++;
+                }
+            }
+        }
+        String[] out = new String[iTemas];
+        for(int i = 0; i < iTemas; i++){out[i] = tempTemas[i];}
+        Arrays.sort(out);
+        return out;
+    }
 }

@@ -1,7 +1,8 @@
 public class RegistroTempoOnline {
-    String nomeDisciplina;
-    int tempoOnline;
-    int tempoOnlineEsperado;
+    private String nomeDisciplina;
+    private int tempoOnline;
+    private int tempoOnlineEsperado;
+    // Os atributos estão adequados, mas é bom deixar eles privados por uma questão de segurança.
 
     public RegistroTempoOnline(String nomeDisciplina){
         this.tempoOnlineEsperado = 120;
@@ -18,6 +19,7 @@ public class RegistroTempoOnline {
         if (this.tempoOnline >= this.tempoOnlineEsperado){return true;}
         else{return false;}
     }
+    @Override
     public String toString(){
         return this.nomeDisciplina + " " + this.tempoOnline + "/" + this.tempoOnlineEsperado;
     }
