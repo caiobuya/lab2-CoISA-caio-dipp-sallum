@@ -67,10 +67,10 @@ public class Disciplina {
         this.valorNota = valorNota;
         if (this.pesos.length != 0){
             this.notaFinal += valorNota * this.pesos[nota - 1];
-            this.nota[nota - 1] = (double) this.valorNota * this.pesos[nota - 1];
+            this.nota[nota - 1] = this.valorNota * this.pesos[nota - 1];
         }else {
             this.notaFinal += valorNota;
-            this.nota[nota - 1] = (double) this.valorNota;
+            this.nota[nota - 1] = this.valorNota;
         }
     }
     /**
