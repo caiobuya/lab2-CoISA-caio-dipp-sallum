@@ -18,6 +18,8 @@ public class Disciplina {
     public Disciplina(String nomeDisciplina){
         this.nomeDisciplina = nomeDisciplina;
         this.nota = new double[]{0, 0, 0, 0};
+        this.pesos = new int[]{1, 1, 1, 1};
+        this.pesoTotal = 4;
     }
     /**
      * Constrói uma Disciplina a partir do nome da disciplina e a quantidade de notas.
@@ -29,7 +31,12 @@ public class Disciplina {
     public Disciplina(String nomeDisciplina, int quantidadeNotas){
         this.nomeDisciplina = nomeDisciplina;
         this.nota = new double[quantidadeNotas];
-        for (int i = 0; i < quantidadeNotas; i++){this.nota[i] = 0;}
+        this.pesos = new int[quantidadeNotas];
+        for (int i = 0; i < quantidadeNotas; i++){
+            this.nota[i] = 0;
+            this.pesos[i] = 1;
+            this.pesoTotal += 1;
+        }
     }
     /**
      * Constrói uma Disciplina a partir do nome da disciplina, quantidade de notas e o peso de cada nota.
@@ -65,29 +72,18 @@ public class Disciplina {
      */
     public void cadastraNota(int nota, double valorNota){
         this.valorNota = valorNota;
-        if (this.pesos.length != 0){
-            this.notaFinal += valorNota * this.pesos[nota - 1];
-            this.nota[nota - 1] = this.valorNota * this.pesos[nota - 1];
-        }else {
-            this.notaFinal += valorNota;
-            this.nota[nota - 1] = this.valorNota;
+        this.notaFinal += valorNota * this.pesos[nota - 1];
+        this.nota[nota - 1] = this.valorNota * this.pesos[nota - 1];
         }
-    }
     /**
      * Retorna o Boolean que representa se foi aprovado.
      *
      * @return um boolean se a média atingiu pelo menos 7.
      */
     public boolean aprovado(){
-        if (this.pesos.length != 0){
-            if (this.notaFinal / this.pesoTotal >= 7){return true;}
-            else{return false;}
+        if (this.notaFinal / this.pesoTotal >= 7){return true;}
+        else{return false;}
         }
-        else{
-            if (this.notaFinal / this.nota.length >= 7) {return true;}
-            else {return false;}
-        }
-    }
 
     /**
      * Retorna a representação em texto da disciplina.
@@ -97,10 +93,7 @@ public class Disciplina {
      */
     @Override
     public String toString(){
-        if (this.pesos.length != 0){
-            return this.nomeDisciplina + " " + this.horasEstudo  + " " + (this.notaFinal / this.pesoTotal) + " " + Arrays.toString(this.nota);}
-        else{
-            return this.nomeDisciplina + " " + this.horasEstudo  + " " + (this.notaFinal / this.nota.length) + " " + Arrays.toString(this.nota);
+        return this.nomeDisciplina + " " + this.horasEstudo  + " " + (this.notaFinal / this.pesoTotal) + " " + Arrays.toString(this.nota);}
         }
-    }
-}
+
+
